@@ -1,0 +1,39 @@
+@startuml
+!includeurl https://gist.githubusercontent.com/Arnaud-Bonneuil/c317a7a30bed7d64e2b5b1f558ac00cf/raw/sober.plantuml
+
+class Class_Triggered_Timer <<Internal_Design_Class>>
+{
+  Allows to measure a defined elapsed time and to send an event
+  on time-up.
+  
+  //Tick// method that shall be cyclically called by an OS task.
+  //Recurrence_Millisecond// shall be set to the value of the period of
+  the associated cyclic OS task.
+  
+  The //Start// method allows to start the timer for a given amout of time.
+  The argument time is the timer duration is milliseconds.
+  If the //Start// method is called before the time-up, the timer is
+  re-started for the new given amount of time.
+  
+  The //Stop// method allows to cancel the timer. The //Time_Is_Up// event
+  will not be sent.
+  
+  --
+  + Recurrence_Millisecond:uint32
+  --
+  + Start( IN time_ms:uint32 )
+  + Stop()
+  + Tick()
+  + Get_Remaining_Time( OUT remainning_time:uint32 )
+  + Is_Active( OUT result:boolean )
+}
+
+interface Time_Is_Up <<Event_Interface>>
+{
+  Indicates that a timer has reached
+  the end of its countdown.
+}
+
+Class_Triggered_Timer ..> Time_Is_Up : <<send>>
+
+@enduml
