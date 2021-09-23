@@ -1,7 +1,6 @@
 @startuml
-!includeurl https://gist.githubusercontent.com/Arnaud-Bonneuil/c317a7a30bed7d64e2b5b1f558ac00cf/raw/sober.puml
 
-class Class_Triggered_Timer <<Internal_Design_Class>>
+class Triggered_Timer <<Internal_Design_Class>>
 {
   Allows to measure a defined elapsed time and to send an event
   on time-up.
@@ -27,13 +26,5 @@ class Class_Triggered_Timer <<Internal_Design_Class>>
   + Get_Remaining_Time( OUT remainning_time:uint32 )
   + Is_Active( OUT result:boolean )
 }
-
-interface Time_Is_Up <<Event_Interface>>
-{
-  Indicates that a timer has reached
-  the end of its countdown.
-}
-
-Class_Triggered_Timer ..> Time_Is_Up : <<send>>
 
 @enduml

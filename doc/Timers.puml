@@ -1,0 +1,9 @@
+@startuml
+
+package Timers [
+  Gathers software elements allowing to measure
+  a defined elapsed time and to send an event
+  on time-up.
+]
+
+@enduml

@@ -1,5 +1,5 @@
-#ifndef CLASS_TRIGGERED_TIMER_H
-#define CLASS_TRIGGERED_TIMER_H
+#ifndef TRIGGERED_TIMER_H
+#define TRIGGERED_TIMER_H
 
 
 /*============================================================================*/
@@ -14,11 +14,11 @@
 /*============================================================================*/
 typedef struct {
     uint32_t Counter;
-} Class_Triggered_Timer_Var;
+} Triggered_Timer_Var;
 
 typedef struct {
     /* Variable attributes */
-    Class_Triggered_Timer_Var* var_attr;
+    Triggered_Timer_Var* var_attr;
     
     /* Sent events */
     void (*Time_Is_Up) ( void );
@@ -26,20 +26,20 @@ typedef struct {
     /* Constants attributes */
     uint32_t Recurrence_Millisecond;
 
-} Class_Triggered_Timer;
+} Triggered_Timer;
 
 
 /*============================================================================*/
 /* Public methods */
 /*============================================================================*/
-void Class_Triggered_Timer__Start( 
-    const Class_Triggered_Timer* me,
+void Triggered_Timer__Start( 
+    const Triggered_Timer* me,
     uint32_t time_ms );
-void Class_Triggered_Timer__Stop( const Class_Triggered_Timer* me );
-void Class_Triggered_Timer__Tick( const Class_Triggered_Timer* me );
-uint32_t Class_Triggered_Timer__Get_Remaining_Time( 
-    const Class_Triggered_Timer* me );
-bool Class_Triggered_Timer__Is_Active( const Class_Triggered_Timer* me );
+void Triggered_Timer__Stop( const Triggered_Timer* me );
+void Triggered_Timer__Tick( const Triggered_Timer* me );
+uint32_t Triggered_Timer__Get_Remaining_Time( 
+    const Triggered_Timer* me );
+bool Triggered_Timer__Is_Active( const Triggered_Timer* me );
 
 
 #endif

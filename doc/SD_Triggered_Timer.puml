@@ -1,0 +1,52 @@
+@startuml
+
+!includeurl https://gist.githubusercontent.com/Arnaud-Bonneuil/c317a7a30bed7d64e2b5b1f558ac00cf/raw/sober.puml
+
+!pragma teoz true
+
+participant "Timer_User" as User
+participant ":Triggered_Timer" as Triggered_Timer
+participant OS
+
+note over Triggered_Timer : Recurrence_Millisecond = 10
+
+{tick_1} OS -> Triggered_Timer : Tick
+
+
+User -> Triggered_Timer : Start(40)
+|||
+{tick_2} OS -> Triggered_Timer : Tick
+
+{tick_1} <-> {tick_2} : 10ms
+
+User -> Triggered_Timer : Is_Active
+activate Triggered_Timer
+return true
+OS -> Triggered_Timer : Tick
+
+User -> Triggered_Timer : Get_Remaining_Time
+activate Triggered_Timer
+return 20
+
+
+OS -> Triggered_Timer : Tick
+|||
+|||
+OS -> Triggered_Timer : Tick
+activate Triggered_Timer
+Triggered_Timer -> User : Time_Is_Up
+deactivate Triggered_Timer
+|||
+OS -> Triggered_Timer : Tick
+
+User -> Triggered_Timer : Is_Active
+activate Triggered_Timer
+return false
+
+OS -> Triggered_Timer : Tick
+
+User -> Triggered_Timer : Get_Remaining_Time
+activate Triggered_Timer
+return 0
+
+@enduml

@@ -1,0 +1,9 @@
+@startuml
+
+interface Time_Is_Up <<Event_Interface>>
+{
+  Indicates that a timer has reached
+  the end of its countdown.
+}
+
+@enduml
